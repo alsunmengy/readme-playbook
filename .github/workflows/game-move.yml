@@ -1,0 +1,34 @@
+# 🎮 互动游戏：访客在对战帖 Issue 评论 !move 走子，本工作流自动裁决并重绘棋盘
+name: Game Move (互动游戏走子)
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  move:
+    if: contains(github.event.comment.body, '!move')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装象棋引擎（仅走子用）
+        run: pip install python-chess --quiet
+
+      - name: 解析并应用走子
+        env:
+          BODY: ${{ github.event.comment.body }}
+          USER: ${{ github.event.comment.user.login }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/game_move.py
+
+      - name: 提交棋盘更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games/ assets/demos/
+          git diff --cached --quiet || git commit -m "chore: 游戏走子更新 [skip ci]"
+          git push || true

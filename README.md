@@ -69,6 +69,8 @@
 
 ### 04 WakaTime
 
+<img src="./assets/demos/wakatime.svg" alt="WakaTime 周报">
+
 > [!TIP]
 > 记录编码时长出周报图表，需要绑定 WakaTime 账号 + 编辑器插件。属于「外部账号绑定」类玩法，配置步骤见 [`src/04-wakatime/`](./src/04-wakatime/)。
 
@@ -123,16 +125,25 @@ S 级以上带金色光效！公共实例欠费（402）不存在的，自己画
 
 ### 12 交互式国际象棋
 
-> [!NOTE]
-> README 不能跑 JS，「交互」靠 **Issue 评论驱动**：访客在 Issue 留走法 → Actions 校验并重绘棋盘。完整方案 + python-chess 渲染脚本见 [`src/12-chess/`](./src/12-chess/)。
+<a href="https://github.com/alsunmengy/readme-playbook/issues/2"><img src="./assets/demos/chess-live.svg" alt="国际象棋 · 实时棋盘" width="420"></a>
+
+> [!IMPORTANT]
+> **这局棋现在就能下！** 去 [♟️ 国际象棋对战帖](https://github.com/alsunmengy/readme-playbook/issues/2) 评论 `!move e2e4`，Actions 自动校验走法并更新上面的棋盘（README 里的图会跟着刷新）。
+> 实现原理：Issue 评论 → `game-move.yml` 触发 → python-chess 裁决 → 重绘 SVG 提交。完整方案见 [`src/12-chess/`](./src/12-chess/)。
 
 ### 13 井字棋 / 四子棋
 
-同上思路，状态机更简单，`src/13-tictactoe-connect4/` 附核心逻辑代码。
+<a href="https://github.com/alsunmengy/readme-playbook/issues/1"><img src="./assets/demos/tictactoe-live.svg" alt="井字棋 · 实时棋盘" width="300"></a>
+
+> [!IMPORTANT]
+> **这盘棋现在就能下！** 去 [⭕ 井字棋对战帖](https://github.com/alsunmengy/readme-playbook/issues/1) 评论 `!move 5`（1-9 对应格子），Actions 自动落子裁决，README 棋盘实时刷新。
+> 四子棋同理，状态机代码见 [`src/13-tictactoe-connect4/`](./src/13-tictactoe-connect4/)。
 
 ### 14 打砖块动画
 
-贡献图当砖块，球弹来弹去消格子！`src/14-breakout/` 附完整可跑的 GIF 生成脚本（`breakout.py`）。
+<img src="./assets/demos/breakout.gif" alt="打砖块动画">
+
+贡献图当砖块，球弹来弹去消格子！上面就是 `breakout.py` 实跑生成的 150 帧 GIF，脚本在 [`src/14-breakout/`](./src/14-breakout/)，可直接改参数换玩法。
 
 ---
 
@@ -140,10 +151,14 @@ S 级以上带金色光效！公共实例欠费（402）不存在的，自己画
 
 ### 15 Spotify 正在播放
 
+<img src="./assets/demos/spotify.svg" alt="正在播放">
+
 > [!TIP]
 > 需要 Spotify 账号授权 + 自建小服务（Vercel/Cloudflare 均可），带均衡器动效。配置步骤见 [`src/15-spotify-now-playing/`](./src/15-spotify-now-playing/)。
 
 ### 16 博客自动同步
+
+<img src="./assets/demos/blog.svg" alt="最新博文">
 
 ```markdown
 <!-- BLOG-POST-LIST:START -->
@@ -213,10 +228,14 @@ S 级以上带金色光效！公共实例欠费（402）不存在的，自己画
 
 ### 21 宠物进度卡
 
+<img src="./assets/demos/pet.svg" alt="电子宠物养成">
+
 > [!NOTE]
 > 电子宠物吃你的贡献长大，共 9 个进化阶段，最高形态是「雪绒」。渲染脚本见 [`src/21-pet-card/`](./src/21-pet-card/)。
 
 ### 22 平台模拟卡片
+
+<img src="./assets/demos/platform.svg" alt="平台风格卡片">
 
 Netflix「今日 TOP 10」、Steam 游戏卡、Duolingo 连胜……SVG 模板仿平台 UI，模板在 [`src/22-platform-cards/`](./src/22-platform-cards/)。
 
@@ -226,11 +245,13 @@ Netflix「今日 TOP 10」、Steam 游戏卡、Duolingo 连胜……SVG 模板�
 
 ### 23 AI 参与徽章
 
-<p><img src="./assets/badges/b-local.svg" alt="AI 参与声明"></p>
+<img src="./assets/demos/ai-badge.svg" alt="AI 参与声明卡">
 
 透明声明 AI 参与程度，或分析 git 历史算出「Vibe Coding 占比」，玩法见 [`src/23-ai-badge/`](./src/23-ai-badge/)。
 
 ### 24 内容自动同步
+
+<img src="./assets/demos/rss.svg" alt="内容自动同步">
 
 博客 / YouTube / StackOverflow 的 RSS 通过 Actions 定时同步进 README，零手动维护，通用配置见 [`src/24-rss-auto-sync/`](./src/24-rss-auto-sync/)。
 
@@ -240,10 +261,23 @@ Netflix「今日 TOP 10」、Steam 游戏卡、Duolingo 连胜……SVG 模板�
 
 ### 25 综合信息图
 
+<img src="./assets/demos/metrics.svg" alt="综合信息图">
+
 > [!TIP]
 > `lowlighter/metrics` 一张图塞下 30+ 插件（Spotify、WakaTime、日历热力图…），需要配置一个 PAT 密钥后启用，完整 workflow 在 [`src/25-metrics-infographic/`](./src/25-metrics-infographic/)。
 
 ### 26 Star 历史曲线
+
+**真实效果示例**（多仓库同屏 + 合成数据演示）：
+
+<table>
+<tr>
+<td width="50%"><img src="./assets/examples/star-history-4repos.jpg" alt="四个真实仓库的 Star 历史"></td>
+<td width="50%"><img src="./assets/examples/star-history-demo.jpg" alt="合成数据演示"></td>
+</tr>
+</table>
+
+**本仓库的实时曲线**（每天 12:00 自动补点）：
 
 <a href="https://github.com/alsunmengy/readme-playbook/stargazers"><img src="./.github/star-history/chart.svg" alt="Star 历史曲线"></a>
 
