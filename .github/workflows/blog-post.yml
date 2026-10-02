@@ -1,0 +1,17 @@
+# 玩法 16 / 24：博客与内容自动同步
+name: Latest Blog Post
+on:
+  schedule: [{cron: '0 * * * *'}]
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: "https://example.com/rss.xml"
+          max_post_count: 5
+          template: "[$$title]($$url)"
