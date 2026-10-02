@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#FF6FD8"/><stop offset="1" stop-color="#7B61FF"/>
+</linearGradient>
+<linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<rect width="960" height="240" fill="url(#bg)"/>
+<path d="M0,150 C160,110 320,190 480,150 C640,110 800,190 960,150 L960,240 L0,240 Z" fill="url(#wave)"/>
+<path d="M0,185 C160,150 320,220 480,185 C640,150 800,220 960,185 L960,240 L0,240 Z" fill="#0d1117" opacity="0.25"/>
+<text x="480" y="102" font-family="'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif" font-size="54" font-weight="800" fill="#ffffff" text-anchor="middle">README Playbook · 玩法大全</text>
+<text x="480" y="146" font-family="'Noto Sans SC','PingFang SC',sans-serif" font-size="22" fill="#ffffff" opacity="0.92" text-anchor="middle">30 个 GitHub README 花活 · 全部现场演示 · 全部本地实现 · 附可复制代码</text>
+<text x="480" y="182" font-family="'Noto Sans SC','PingFang SC',sans-serif" font-size="14" fill="#ffffff" opacity="0.75" text-anchor="middle">看得到的效果，都是教程里教的玩法 · 每天中午 12:00 自动更新</text>
+</svg>

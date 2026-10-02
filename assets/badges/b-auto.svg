@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="26" viewBox="0 0 160 26">
+<rect x="0" y="0" width="52" height="26" rx="5" fill="#555"/>
+<rect x="52" y="0" width="108" height="26" rx="5" fill="#FF9A3D"/>
+<rect x="47" y="0" width="5" height="26" fill="#FF9A3D"/>
+<text x="26" y="18" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">更新</text>
+<text x="106" y="18" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">每日 12:00</text>
+</svg>

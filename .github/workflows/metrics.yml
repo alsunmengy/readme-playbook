@@ -1,15 +1,23 @@
 # 玩法 25：综合信息图（lowlighter/metrics）
+# 需要仓库 Secrets 配置 METRICS_TOKEN（GitHub PAT，勾 public_repo + read:user）
+# 未配置时自动跳过，不会产生失败通知
 name: Metrics
 on:
-  schedule: [{cron: '0 0 * * *'}]
+  schedule: [{cron: '0 4 * * *'}]   # UTC 04:00 = 北京 12:00
   workflow_dispatch:
 jobs:
   metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
     steps:
+      - name: Skip if token not configured
+        if: env.HAS_METRICS_TOKEN != 'true'
+        run: echo "METRICS_TOKEN 未配置，跳过本次运行（配置 Secrets 后自动生效）"
       - uses: lowlighter/metrics@latest
+        if: env.HAS_METRICS_TOKEN == 'true'
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: alsunmengy

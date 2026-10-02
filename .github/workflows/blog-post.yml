@@ -1,7 +1,8 @@
 # 玩法 16 / 24：博客与内容自动同步
+# 把下面 feed_list 换成真实 RSS 地址后即可每天自动同步
 name: Latest Blog Post
 on:
-  schedule: [{cron: '0 * * * *'}]
+  schedule: [{cron: '0 4 * * *'}]   # UTC 04:00 = 北京 12:00
   workflow_dispatch:
 jobs:
   update:
@@ -10,7 +11,17 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Check feed configured
+        id: check
+        run: |
+          if grep -q 'example.com/rss.xml' .github/workflows/blog-post.yml; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "feed_list 还是占位符，跳过本次运行（填真实 RSS 后自动生效）"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
       - uses: gautamkrishnar/blog-post-workflow@v1
+        if: steps.check.outputs.skip == 'false'
         with:
           feed_list: "https://example.com/rss.xml"
           max_post_count: 5

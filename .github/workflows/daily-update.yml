@@ -1,0 +1,37 @@
+# 🎯 统一每日更新：每天北京时间中午 12:00（UTC 04:00）重生成全部本地图
+# 覆盖玩法：统计卡(01/06) / Streak(02) / 访客数(03) / 贪吃蛇(07) / 3D贡献图(08)
+#          终端动画(09) / 奖杯(11) / 语录(20) / Star历史(26) / 徽章数字(30)
+name: Daily Update (每天 12:00)
+on:
+  schedule: [{cron: '0 4 * * *'}]   # UTC 04:00 = 北京 12:00
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 重生成全部本地 SVG
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 .github/scripts/gen_stats.py   alsunmengy assets/stats.svg assets/langs.svg
+          python3 .github/scripts/gen_streak.py  alsunmengy assets/streak.svg
+          python3 .github/scripts/gen_trophy.py  alsunmengy assets/trophy.svg
+          python3 .github/scripts/gen_3d.py      alsunmengy assets/contrib-3d.svg
+          python3 .github/scripts/gen_snake.py   alsunmengy assets/snake.svg
+          python3 .github/scripts/gen_views.py   ${{ github.repository }} assets/views.svg
+          python3 .github/scripts/gen_typing.py  assets/terminal.svg
+          python3 .github/scripts/gen_quote.py   assets/quote.svg
+          python3 .github/scripts/gen_chart.py   ${{ github.repository }} "#7B61FF" .github/star-history/chart.svg
+          python3 .github/scripts/refresh_badges.py ${{ github.repository }}
+
+      - name: 提交更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/ .github/star-history/ .github/badges/
+          git diff --cached --quiet || git commit -m "chore: 每日 12:00 自动更新全部展示图 [skip ci]"
+          git push
